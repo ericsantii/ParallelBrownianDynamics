@@ -1,0 +1,81 @@
+! ---------------------------------------------
+!    Result file location
+! ---------------------------------------------
+! ---------------------------------------------
+!    Particle preferences
+! ---------------------------------------------
+1        Total Number of run                                				 !! gNrun
+0       Restarting flag: 0 no restart, 1 restart            				 !! gRestart 
+500      Total Number of particles                         			         !! gNPart
+1        Number of motor particles                             				 !! gNMove
+0.01D0   Volume fraction of particles                         				 !! gPhi
+0        Volume fraction parameter: 0 - use gPhi, 1 - use gPhim and gPhib  		 !! gPhip 
+0.25     Motor volume fraction                                                           !! gPhim
+0.15     Bath volume fraction                                                            !! gPhib
+1        Simulation mode ( 1: force, 2: velocity, 3: mixed ) 				 !! gForceMode
+2        Dimensionality (2: q2D or  3: 3D)            				         !! gNDimensionality
+0        Free rotor mode: 0 - NO, 1 - Yes                     				 !! gFreeRotor
+0        Fixed center of mass - rotor: 0 - No, 1 - Yes         				 !! gFixedCenterMass
+0        Specified flux problem: 0 - No, 1 - Yes             				 !! gSpecifiedFluxMode
+.FALSE.  Type of magnetism: TRUE for paramagnetic, FALSE for ferromagnetic               !! gParaMag
+0.D0     Magnetic field in x direction: 0 - no magnetic field, 1 - magnetic field        !! gH(1)
+0.D0     Magnetic field in y direction: 0 - no magnetic field, 1 - magnetic field	 !! gH(2) 
+0.D0     Magnetic field in z direction: 0 - no magnetic field, 1 - magnetic field 	 !! gH(3)
+0.D0     Langevin parameter                                      			 !! gLag    
+1.D0     Dipole-dipole interaction parameter: 0 - No, 1 - Yes  				 !! gDDinter
+0.D0     Repulsive force parameter: 0 - No, 1 - Yes            				 !! gRepulinter
+15.D0    Dipolar coupling constant parameter                   				 !! gLambda
+0.D0     Peclet number: F / (kT/a)                              		         !! gPe
+0.0D0    Shifted dipole displacement from center of mass                                 !! gSh
+2.D0     Lennard Jones Characteristic Length                                             !! gSigma
+100.D0  Lennard Jones to strength  parameter                                            !! gEps
+1.D0     Brownian motion flag: 0 for no BM, 1 for BM          				 !! gBrownianFlag 
+1        Average velocity: 0 - no use data, 1 - use data 
+! ---------------------------------------------
+!    Simulation time preferences
+! ---------------------------------------------
+2000          End time                                           			!! gT
+0.0001D0      Step size    					 			!! gDT
+10000          Number of time steps to record                     			!! gNDT
+100          Time calculation                                   			!!
+10           Number of time steps to write data for restarting                  	!! gRestTiming    
+10000        Number of time steps to record for cluster analysis                       !! gNDTCLUS
+! --------------------------------------------
+!    Simulation Videos Preferences
+! --------------------------------------------- 
+1        Data for simulation videos: 0 - No, 1 - Yes          				!! gMovies
+500     Number of frames to record for video                 				!! gNFrames
+! --------------------------------------------
+!    Periodic cell size preferences
+! ---------------------------------------------
+1        Scaling of the simulation cell in the x-direction
+1        Scaling of the simulation cell in the y-direction
+1        Scaling of the simulation cell in the z-direction
+! ---------------------------------------------
+!    Density profile preferences
+! ---------------------------------------------
+150       Number of bins for density profile in the x-direction
+150       Number of bins for density profile in the y-direction
+150       Number of bins for density profile in the z-direction
+! ---------------------------------------------
+!    Pair distribution function preferences
+! ---------------------------------------------
+10        Number of bins for pair distribution in the x-direction
+36        Number of bins for pair distribution in the y-direction
+18        Number of bins for pair distribution in the z-direction
+300       Number of bins for radial dist. between moving particles
+80        Number of bins for pair distribution at contact
+! ---------------------------------------------
+!    Reaction probability / Mean Specific flux and relocation mode
+! ----------------------------------------------
+1              Relocate particles: 1 - randomly, 0 - other side of motor !! gRandLoc
+! -----------------------------
+!    Other settings: rotation mode, HS for bath particles, New config
+! -------------------------------
+2          Which mode: 0 - no rotation, 1 - run and tumble, 2 - diffusive  !! gRotateFlag
+1.D0       Rotation parameter 0 - no rotation, 1 - full rotation           !! gRotateFactor   (Brownian)
+1.D0       Rotation of the bath: 0 - no rotation, 1 - full rotation        !! gRotateFactorb  (Brownian)
+1.D0       Rotation due to DD interaction: 0 - no, 1 - yes                 !! gDDinterRot
+0          Which collision mode: 0 - non-ideal gas, 1 - ideal gas
+0          Which HS motor mode: 0 - Move the motor, 1 - Don't move motor
+0          Use equilibrium configuration: 0 - No, 1 - Yes
