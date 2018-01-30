@@ -33,7 +33,7 @@
 PROGRAM BrownianDynamics
   USE Globals
   USE VECTORCLASS
- ! use omp_lib
+  USE omp_lib
   IMPLICIT NONE
     
   ! Loop counters.
@@ -48,10 +48,24 @@ PROGRAM BrownianDynamics
   INTEGER :: k, sim, l 
   real :: wtime
   real, dimension(2) :: tarray 
-  real :: dummy
+  integer count_0, count_1
+  integer count_rate, count_max
+  double precision time_init, time_final, elapsed_time
+  double precision w_time
+
+
+
   gND = 3 !! Do not change! Dimensionality is defined with variable gNDimensionality
 
+  !  ! Starting time
+  !  call system_clock(count_0, count_rate, count_max)
+  !  time_init = count_0*1.0/count_rate
+  w_time = omp_get_wtime()
+
   CALL Initialize                    ! init.f90 
+
+  
+       
   
     
   
@@ -66,8 +80,8 @@ PROGRAM BrownianDynamics
      ! read data of Restart_pos_orient.out file --Luis & Ronal
      if(gRestart.eq.1) then                                           !RONAL-LUIS RESTARTING
        do i=1,gNPart                                                  !RONAL-LUIS RESTARTING
-         read(2000, 2001) gT, gR(i,:), gN(i,:), dummy, dummy, dummy, gQuat(i,:)            !RONAL-LUIS RESTARTING
-         2001 FORMAT(1X, E15.7E3, 3(1X, E24.15E3), 6(1X, E24.15E3), 4(1X, E24.15E3)) !RONAL-LUIS RESTARTING
+         read(2000, 2001) gT, gR(i,:), gN(i,:), gQuat(i,:)            !RONAL-LUIS RESTARTING
+         2001 FORMAT(1X, E15.7E3, 3(1X, E24.15E3), 3(1X, E24.15E3), 4(1X, E24.15E3)) !RONAL-LUIS RESTARTING
        enddo                                                          !RONAL-LUIS RESTARTING
        gT=0.d0                                                        !RONAL-LUIS RESTARTING
      endif                                                            !RONAL-LUIS RESTARTING
@@ -77,9 +91,9 @@ PROGRAM BrownianDynamics
         CALL CalculateFT              ! dyn.f90         
         CALL UpdateParticles          ! dyn.f90
         CALL OutputInter              ! out.f90
-        CALL ClusterStats
+       !CALL ClusterStats
         
-        gT = gT + gDT
+        gT = gT + gDT 
         
      END DO
      
@@ -87,5 +101,16 @@ PROGRAM BrownianDynamics
      CALL CloseFiles                   ! init.f90
      
   END DO
+  ! ! Ending time
+  !  call system_clock(count_1, count_rate, count_max)
+  !  time_final = count_1*1.0/count_rate
+  !  ! Elapsed time
+  !  elapsed_time = time_final - time_init
+  w_time = omp_get_wtime() - w_time
+
+  !   ! Write elapsed time
+  !  write(*,1003) int(elapsed_time),elapsed_time-int(elapsed_time)
+  write(*, '(a,g14.6)') ' Elapsed seconds = ' , w_time
+   
 
 END PROGRAM BrownianDynamics

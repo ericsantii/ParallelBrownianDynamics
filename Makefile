@@ -1,10 +1,9 @@
-COMP= gfortran
+#COMP= gfortran
 #COMP= ifort -static-libcxa
 #COMP= ifort -openmp
-#COMP= ifort -g -traceback
-#COMP= ifort  
+COMP= ifort -g -traceback -qopenmp
+#COMP= ifort 
 #  for intel f90 for P III
-GFLAGS= -O3
 #GFLAGS= -O3 -xK -tpp6 -pad -Zp8 -wp_ipo 
 #GFLAGS= -O3 -xK -tpp6 -pad -Zp8 -wp_ipo
 #GFLAG77= -O3 -xK -tpp6 -pad -Zp8 -wp_ipo
@@ -16,6 +15,7 @@ GFLAGS= -O3
 
 #GFLAGS = -O3 -ipo -static
 brow.x: vec.o part.o ll.o cell.o glob.o vfun.o quat.o matrices.o ran.o init.o gen.o sph.o dyn.o clus.o col.o out.o main.o 
+	
 	$(COMP) $(GFLAGS) vec.o part.o ll.o cell.o glob.o vfun.o quat.o matrices.o ran.o init.o gen.o sph.o dyn.o clus.o col.o out.o main.o -o brow.x
 
 vec.o: vec.f90
